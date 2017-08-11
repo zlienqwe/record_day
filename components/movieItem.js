@@ -9,22 +9,31 @@ import {
   StyleSheet,
   Text,
   View,
-  Image
+  Image,
+  TouchableOpacity,
+  navigator,
 } from 'react-native';
 
+import movieDetail from './movieDetail'
+
 export default class MovieItem extends Component {
+  chooseMovie (){
+    console.log(this.props.movie.item_id)
+    this.props.onPressItem(this.props.movie.item_id, this.props.movie.subtitle);
+  }
   render() {
     return(
-      <View style={styles.movieitem}>
+      <TouchableOpacity style={styles.movieitem} onPress={()=>this.chooseMovie()}>
         <View style={styles.rightContainer}>
-          <Text style={styles.title}>{this.props.movie.title}</Text>
+          <Text style={styles.title}>{this.props.movie.subtitle}</Text>
+          <Text style={styles.subtitle} ellipsizeMode='tail' numberOfLines={1}>{this.props.movie.title}</Text>
           <Text style={styles.year}>{this.props.movie.year}</Text>
         </View>
         <Image
-          source={{uri: this.props.movie.posters.thumbnail}}
+          source={{uri: this.props.movie.img_url}}
           style={styles.thumbnail}
         />
-      </View>
+      </TouchableOpacity>
     )
   }
  }
@@ -36,7 +45,13 @@ export default class MovieItem extends Component {
      color: 'grey',
      textAlign: 'left',
      paddingLeft: 10,
-     fontWeight: 'bold'
+     fontWeight: 'bold',
+     marginTop: 8,
+   },
+   subtitle: {
+     fontSize: 12,
+     textAlign: 'left',
+     paddingLeft: 10,
    },
    year: {
      textAlign: 'left',
@@ -44,8 +59,8 @@ export default class MovieItem extends Component {
      paddingLeft: 10,
    },
    thumbnail: {
-     width: 53,
-     height: 81,
+     width: 100,
+     height: 100,
      marginLeft: 20
    },
    rightContainer: {
