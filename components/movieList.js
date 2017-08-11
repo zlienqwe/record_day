@@ -24,10 +24,19 @@ import Loading from './loading';
 import MovieItem from './movieItem'
 //
 var REQUEST_URL = 'http://v3.wufazhuce.com:8000/api/channel/movie/more/0?channel=wdj&version=4.0.2&uuid=ffffffff-a90e-706a-63f7-ccf973aae5ee&platform=android';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import MIcon from 'react-native-vector-icons/Foundation';
+
+const myIcon = (<Icon name="navicon" size={20} color="#900" />)
 
 export default class MovieList extends Component {
   static navigationOptions = {
     title: '首页',
+    headerLeft: <Icon name="navicon" size={20} color="#989797" />,
+    headerRight: <Icon name="info-circle" size={20} color="#989797" />,
+    headerTintColor: '989797',
+    headerStyle:{paddingLeft: 20, paddingRight: 20}
+
   }
   constructor(props) {
     super(props);
@@ -80,7 +89,7 @@ export default class MovieList extends Component {
      );
    }
    getMovieDetails(ID, name) {
-     const { navigate } = this.props.navigation;
+     const { navigate } = this.props.navigation
      navigate('Profile', {movieID: ID, movieName: name})
    };
 
@@ -136,5 +145,8 @@ export default class MovieList extends Component {
      paddingLeft: 10,
      marginBottom: 2,
      backgroundColor: '#fff'
+   },
+   headerIcon: {
+     marginLeft: 20,
    }
  });

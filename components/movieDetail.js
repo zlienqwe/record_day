@@ -10,14 +10,19 @@ import {
   Text,
   View,
   Image,
-  ScrollView
+  ScrollView,
+  Dimensions,
 } from 'react-native';
 import Loading from './loading'
 import FitImage from 'react-native-fit-image';
+import Carousel from 'react-native-looped-carousel';
+
+const { width, height } = Dimensions.get('window');
 
 export default class MovieDetail extends Component {
   static navigationOptions = ({ navigation }) => ({
     title: `${navigation.state.params.movieName}`,
+    header: null,
   });
 
   constructor(props) {
@@ -25,7 +30,10 @@ export default class MovieDetail extends Component {
     this.state = {
       movieDetail: {},
       loaded: false,
-      param: ''
+      param: '',
+      autoplay: false,
+      arrows: true,
+      size: { width, height },
     }
   }
 
@@ -33,6 +41,7 @@ export default class MovieDetail extends Component {
     console.log('go fetch');
     this.fetchData();
   }
+
 
   fetchData() {
     console.log('fetching');
@@ -62,13 +71,34 @@ export default class MovieDetail extends Component {
     console.log(this.state.movieDetail);
     return (
         <ScrollView contentContainerStyle={styles.contentContainer}>
+        <FitImage
+          resizeMode="contain"
+          source={{uri: this.state.movieDetail.detailcover}}
+          style={styles.thumbnail}></FitImage>
+
           <Text>
             {this.state.movieDetail.officialstory}
           </Text>
-          <FitImage
-            resizeMode="contain"
-            source={{uri: this.state.movieDetail.detailcover}}
-            style={styles.thumbnail}></FitImage>
+
+          <Carousel
+            style={this.state.size}
+            autoplay={this.state.autoplay}
+            pageInfo
+            bullets={this.state.bullets}
+            onAnimateNextPage={(p) => console.log(p)}>
+              <Image
+                style={this.state.size}
+                source={{uri: this.state.movieDetail.photo[0]}}
+                ></Image>
+                <Image
+                  style={this.state.size}
+                  source={{uri: this.state.movieDetail.photo[1]}}
+                  ></Image>
+                  <Image
+                    style={this.state.size}
+                    source={{uri: this.state.movieDetail.photo[2]}}
+                    ></Image>
+                  </Carousel>
         </ScrollView>
     );
   }
@@ -86,5 +116,6 @@ export default class MovieDetail extends Component {
    },
    contentContainer: {
       paddingVertical: 20
-  }
+  },
+
  });
