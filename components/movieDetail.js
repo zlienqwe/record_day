@@ -10,6 +10,7 @@ import {
   Text,
   View,
   Image,
+  ScrollView
 } from 'react-native';
 import Loading from './loading'
 import FitImage from 'react-native-fit-image';
@@ -60,7 +61,7 @@ export default class MovieDetail extends Component {
 
     console.log(this.state.movieDetail);
     return (
-        <View>
+        <ScrollView contentContainerStyle={styles.contentContainer}>
           <Text>
             {this.state.movieDetail.officialstory}
           </Text>
@@ -68,7 +69,7 @@ export default class MovieDetail extends Component {
             resizeMode="contain"
             source={{uri: this.state.movieDetail.detailcover}}
             style={styles.thumbnail}></FitImage>
-        </View>
+        </ScrollView>
     );
   }
 
@@ -83,4 +84,7 @@ export default class MovieDetail extends Component {
    loading: {
      color: 'red',
    },
+   contentContainer: {
+      paddingVertical: 20
+  }
  });
