@@ -14,7 +14,7 @@ import {
   navigator,
 } from 'react-native';
 
-import movieDetail from './movieDetail'
+import movieDetail from '../views/movieDetail'
 
 export default class MovieItem extends Component {
   chooseMovie (){

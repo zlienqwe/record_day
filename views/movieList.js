@@ -20,8 +20,8 @@ import {
   StackNavigator,
 } from 'react-navigation';
 
-import Loading from './loading';
-import MovieItem from './movieItem'
+import Loading from '../components/loading';
+import MovieItem from '../components/movieItem'
 //
 var REQUEST_URL = 'http://v3.wufazhuce.com:8000/api/channel/movie/more/0?channel=wdj&version=4.0.2&uuid=ffffffff-a90e-706a-63f7-ccf973aae5ee&platform=android';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -34,9 +34,8 @@ export default class MovieList extends Component {
     title: '首页',
     headerLeft: <Icon name="navicon" size={20} color="#989797" />,
     headerRight: <Icon name="info-circle" size={20} color="#989797" />,
-    headerTintColor: '989797',
+    headerTintColor: '#989797',
     headerStyle:{paddingLeft: 20, paddingRight: 20}
-
   }
   constructor(props) {
     super(props);

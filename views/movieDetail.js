@@ -13,7 +13,7 @@ import {
   ScrollView,
   Dimensions,
 } from 'react-native';
-import Loading from './loading'
+import Loading from '../components/loading'
 import FitImage from 'react-native-fit-image';
 import Carousel from 'react-native-looped-carousel';
 
@@ -22,7 +22,7 @@ const { width, height } = Dimensions.get('window');
 export default class MovieDetail extends Component {
   static navigationOptions = ({ navigation }) => ({
     title: `${navigation.state.params.movieName}`,
-    header: null,
+    // header: null,
   });
 
   constructor(props) {
